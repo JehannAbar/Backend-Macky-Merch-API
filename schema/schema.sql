@@ -1,3 +1,6 @@
+CREATE DATABASE IF NOT EXISTS `macky-merch-database`;
+USE `macky-merch-database`;
+
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
