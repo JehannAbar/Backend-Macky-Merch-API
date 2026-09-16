@@ -12,6 +12,25 @@ function isNegative(num: number) {
 
 app.get('/api/products', async (req: Request, res: Response) => {
     try {
+        // Returns an array of Row Data Packets
+        const [results] = await db.query(
+            `SELECT * FROM PRODUCTS`
+        );
+
+        if (!Array.isArray(results) || results.length === 0) {
+            res.status(404).json({ message: "No products were found" });
+            return;
+        }
+
+        res.status(200).json(results);
+    }
+    catch {
+        res.status(500).json({message: "Server error"})
+    }
+})
+
+app.post('/api/products', async (req: Request, res: Response) => {
+    try {
         const page: number = parseInt(req.query.page as string);
         const limit: number = parseInt(req.query.limit as string);
 
