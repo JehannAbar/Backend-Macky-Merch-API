@@ -194,4 +194,9 @@ app.delete('/api/products/:id', async (req: Request, res: Response) => {
     }
 })
 
-app.listen(3000);
+
+if (require.main === module) {
+  app.listen(3000)
+}
+
+export default app;
