@@ -15,17 +15,13 @@ A RESTful API for the LSCS Backend Take Home Exam
    npm install
    ```
 
-2. **Configure Environment Variables:**
-    <br>
-    Make sure to fill up the env variables, specifically the password for your mysql, and ensure your MySQL is running.
-
-3. **Run the server:**
+2. **Run the server:**
    ```bash
    npm run dev
    ```
     You can see if the backend is responding by visiting an endpoint such as this: `http://localhost:3000/api/products?page=1&limit=1`
     
-4. **Run tests:**
+3. **Run tests:**
    ```bash
    npm run test
    ```
