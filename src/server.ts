@@ -79,8 +79,8 @@ app.post('/api/products', async (req: Request, res: Response) => {
                 price,
                 stock,
                 category,
-                size ?? null,
-                isAvailable ?? true,
+                size,
+                isAvailable,
             ]
         );
 
@@ -162,7 +162,7 @@ app.put('/api/products/:id', async (req: Request, res: Response) => {
         );
 
         if (updated_obj.affectedRows === 0) {
-            res.status(404).json({ error: 'Product was unable to be updated.' });
+            res.status(404).json({ error: 'Product was not found or unable to be updated' });
             return;
         }
 

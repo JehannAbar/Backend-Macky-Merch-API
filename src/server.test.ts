@@ -22,7 +22,8 @@ describe('Products API Integration Tests', () => {
   describe('GET /api/products', () => {
     it('should return paginated products on valid query parameters', async () => {
       const mockProducts = [
-        { id: 1, name: 'Shirt', price: 20, stock: 10, category: 'Apparel' },
+        { id: 1, name: 'Macky Shirt', price: 20, stock: 10, category: 'Apparel' },
+        { id: 2, name: 'Macky Charms', price: 10, stock: 5, category: 'Accessories'},
       ];
       mockDbQuery.mockResolvedValueOnce([mockProducts]);
 
@@ -64,7 +65,7 @@ describe('Products API Integration Tests', () => {
 
   describe('POST /api/products', () => {
     const validProductPayload = {
-      name: 'Hoodie',
+      name: 'Macky Hoodie',
       price: 49.99,
       stock: 15,
       category: 'Apparel',
@@ -122,7 +123,7 @@ describe('Products API Integration Tests', () => {
 
   describe('GET /api/products/:id', () => {
     it('should return a single product by ID', async () => {
-      const mockProduct = { id: 1, name: 'Mug', price: 12.99 };
+      const mockProduct = { id: 1, name: 'Macky Shirt', price: 12.99, category: 'Apparel' };
       mockDbQuery.mockResolvedValueOnce([[mockProduct]]);
 
       const res = await request(app).get('/api/products/1');
@@ -143,7 +144,7 @@ describe('Products API Integration Tests', () => {
 
   describe('PUT /api/products/:id', () => {
     it('should update product details successfully', async () => {
-      const updateData = { name: 'Updated Shirt', price: 25.0 };
+      const updateData = { name: 'Macky Awesome Shirt', price: 25.0 };
       const updatedProduct = { id: 1, ...updateData, stock: 5, category: 'Apparel' };
 
       mockDbQuery.mockResolvedValueOnce([{ affectedRows: 1 }]);
@@ -169,11 +170,12 @@ describe('Products API Integration Tests', () => {
 
       const res = await request(app)
         .put('/api/products/999')
-        .send({ name: 'Valid Name' });
+        .send({name: 'TestName'});
 
       expect(res.status).toBe(404);
-      expect(res.body).toEqual({ error: 'Product was unable to be updated.' });
+      expect(res.body).toEqual({ error: 'Product was not found or unable to be updated' });
     });
+
   });
 
   describe('DELETE /api/products/:id', () => {
