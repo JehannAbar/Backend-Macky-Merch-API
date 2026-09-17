@@ -23,7 +23,8 @@ A RESTful API for the LSCS Backend Take Home Exam
    ```bash
    npm run dev
    ```
-
+    You can see if the backend is responding by visiting an endpoint such as this: `http://localhost:3000/api/products?page=1&limit=1`
+    
 4. **Run tests:**
    ```bash
    npm run test
